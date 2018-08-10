@@ -1,0 +1,23 @@
+{
+  "name": "Node-Web-Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lindsbow102/Node-Web-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lindsbow102/Node-Web-Server/issues"
+  },
+  "homepage": "https://github.com/lindsbow102/Node-Web-Server#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
