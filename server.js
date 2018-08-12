@@ -1,11 +1,30 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
 
 const app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');  // Setting up site to use partials
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
+
+app.use((req, res, next) => {
+    const now = new Date().toString(); // Gives us formatted date for readable timestamp
+    const log = `${now}: ${req.method} ${req.url}`;
+    console.log(log);
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('Unable to append to server.log.');
+        }
+    });
+
+    next(); // If this isn't called, your request handlers will never fire
+});
+
+app.use((req, res, next) => {
+    res.render('maintenance.hbs'); // Only maintenance page will show up no matter URL 
+});
+
+app.use(express.static(__dirname + '/public')); // 'app.use()' is how you register middleware
 
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
