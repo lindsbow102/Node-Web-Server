@@ -22,9 +22,9 @@ app.use((req, res, next) => {
     next(); // If this isn't called, your request handlers will never fire
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs'); // Only maintenance page will show up no matter URL 
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs'); // Only maintenance page will show up no matter URL 
+// });
 
 app.use(express.static(__dirname + '/public')); // 'app.use()' is how you register middleware
 
@@ -47,6 +47,12 @@ app.get('/about', (req, res) => {
     res.render('about.hbs', {
         pageTitle: 'About Page', 
     }); // From Views folder
+});
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects Page'
+    })
 });
 
 app.get('/bad', (req, res) => {
